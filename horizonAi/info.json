@@ -1,0 +1,327 @@
+{
+  "name": "horizonAi",
+  "label": "HorizonAi",
+  "version": "1.0.0",
+  "description": "",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "",
+  "icon_small_name": "",
+  "icon_large_name": "",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "name": "server_url",
+        "title": "Server URL",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "placeholder": "https://api.horizon3ai.com/",
+        "value": "https://api.horizon3ai.com/",
+        "description": "Horizon.ai GraphQL API endpoint",
+        "isOnChange": false,
+        "onchange": {}
+      },
+      {
+        "name": "api_token",
+        "title": "API Token",
+        "type": "password",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "description": "Bearer token for API authentication",
+        "isOnChange": false,
+        "onchange": {}
+      },
+      {
+        "name": "verify_ssl",
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "editable": true,
+        "visible": true,
+        "required": false,
+        "description": "Verify SSL certificate",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_pentests",
+      "title": "Get Pentests",
+      "description": "Retrieve and filter pentest operations",
+      "category": "investigation",
+      "annotation": "get_pentests",
+      "parameters": [
+        {
+          "name": "page_num",
+          "title": "Page Number",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 1,
+          "description": "Page number for pagination"
+        },
+        {
+          "name": "page_size",
+          "title": "Page Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 50,
+          "description": "Number of results per page"
+        },
+        {
+          "name": "text_search",
+          "title": "Text Search",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Search across all text columns",
+          "tooltip": "Search across all text columns"
+        },
+        {
+          "name": "order_by",
+          "title": "Order By Field",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "options": [
+            "name",
+            "state",
+            "client_name",
+            "launched_at",
+            "completed_at",
+            "impacts_count",
+            "attack_paths_count"
+          ],
+          "description": "Field to order results by",
+          "tooltip": "Field to order results by"
+        },
+        {
+          "name": "sort_order",
+          "title": "Sort Order",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": "DESC",
+          "options": [
+            "ASC",
+            "DESC"
+          ],
+          "description": "Sort order direction",
+          "tooltip": "Sort order direction"
+        },
+        {
+          "name": "date_field",
+          "title": "Date Field",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": "launched_at",
+          "options": [
+            "launched_at",
+            "completed_at",
+            "scheduled_at",
+            "canceled_at"
+          ],
+          "description": "Field to apply date filters to",
+          "tooltip": "Field to apply date filters to"
+        },
+        {
+          "name": "date_from",
+          "title": "Date From",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter results from this date",
+          "tooltip": "Filter results from this date"
+        },
+        {
+          "name": "date_to",
+          "title": "Date To",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter results until this date",
+          "tooltip": "Filter results until this date"
+        },
+        {
+          "name": "state",
+          "title": "State",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "options": [
+            "scheduled",
+            "provisioning",
+            "ready",
+            "running",
+            "complete",
+            "post-processing",
+            "done",
+            "cancelling",
+            "canceled",
+            "paused",
+            "error"
+          ],
+          "description": "Filter by pentest state",
+          "tooltip": "Filter by pentest state"
+        },
+        {
+          "name": "client_name",
+          "title": "Client Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter by client name",
+          "tooltip": "Filter by client name"
+        },
+        {
+          "name": "include_attack_paths",
+          "title": "Include Attack Paths",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": false,
+          "description": "Include attack paths in the response",
+          "tooltip": "Include attack paths in the response"
+        },
+        {
+          "name": "include_weaknesses",
+          "title": "Include Weaknesses",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": false,
+          "description": "Include weaknesses in the response",
+          "tooltip": "Include weaknesses in the response"
+        }
+      ],
+      "output_schema": {
+        "pentests_page": {
+          "pentests": [],
+          "page_info": {
+            "page_size": 0,
+            "end_cursor": "",
+            "has_next_page": false,
+            "total_count": 0
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_attack_paths",
+      "title": "Get Attack Paths",
+      "description": "Retrieve attack paths for a specific pentest",
+      "category": "investigation",
+      "annotation": "get_attack_paths",
+      "parameters": [
+        {
+          "name": "op_id",
+          "title": "Operation ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Pentest operation ID"
+        },
+        {
+          "name": "page_num",
+          "title": "Page Number",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 1,
+          "description": "Page number for pagination"
+        },
+        {
+          "name": "page_size",
+          "title": "Page Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 50,
+          "description": "Number of results per page"
+        }
+      ],
+      "output_schema": {
+        "attack_paths_page": {
+          "attack_paths": [],
+          "page_info": {
+            "page_size": 0,
+            "end_cursor": "",
+            "has_next_page": false,
+            "total_count": 0
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_weaknesses",
+      "title": "Get Weaknesses",
+      "description": "Retrieve weaknesses for a specific pentest",
+      "category": "investigation",
+      "annotation": "get_weaknesses",
+      "parameters": [
+        {
+          "name": "op_id",
+          "title": "Operation ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Pentest operation ID"
+        },
+        {
+          "name": "page_num",
+          "title": "Page Number",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 1,
+          "description": "Page number for pagination"
+        },
+        {
+          "name": "page_size",
+          "title": "Page Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "default": 50,
+          "description": "Number of results per page"
+        }
+      ],
+      "output_schema": {
+        "weaknesses_page": {
+          "weaknesses": [],
+          "page_info": {
+            "page_size": 0,
+            "end_cursor": "",
+            "has_next_page": false,
+            "total_count": 0
+          }
+        }
+      }
+    }
+  ]
+}
