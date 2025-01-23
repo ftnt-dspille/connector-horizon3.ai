@@ -1,14 +1,14 @@
 {
   "name": "horizonAi",
-  "label": "HorizonAi",
+  "label": "Horizon3.ai",
   "version": "1.0.0",
-  "description": "",
+  "description": "Horizon3.ai is a cybersecurity company specializing in automated security solutions. Their flagship product, NodeZero, is an autonomous penetration testing platform that simulates real-world cyberattacks to identify vulnerabilities and provide actionable remediation insights. Designed for ease of use, NodeZero empowers organizations to continuously assess and improve their security posture without relying heavily on manual intervention. It supports cloud, on-premise, and hybrid environments, making it adaptable to diverse IT setups.",
   "publisher": "Community",
   "cs_approved": false,
   "cs_compatible": true,
-  "category": "",
+  "category": "Attack surface management",
   "icon_small_name": "",
-  "icon_large_name": "",
+  "icon_large_name": "horizon_large.png",
   "help_online": "",
   "configuration": {
     "fields": [
@@ -21,30 +21,26 @@
         "required": true,
         "placeholder": "https://api.horizon3ai.com/",
         "value": "https://api.horizon3ai.com/",
-        "description": "Horizon.ai GraphQL API endpoint",
-        "isOnChange": false,
-        "onchange": {}
+        "description": "Horizon.ai GraphQL API endpoint"
       },
       {
-        "name": "api_token",
         "title": "API Token",
         "type": "password",
-        "editable": true,
-        "visible": true,
+        "name": "api_token",
         "required": true,
-        "description": "Bearer token for API authentication",
-        "isOnChange": false,
-        "onchange": {}
+        "visible": true,
+        "editable": true,
+        "description": "Bearer token for API authentication"
       },
       {
-        "name": "verify_ssl",
         "title": "Verify SSL",
         "type": "checkbox",
-        "editable": true,
-        "visible": true,
+        "name": "verify_ssl",
         "required": false,
-        "description": "Verify SSL certificate",
-        "value": true
+        "visible": true,
+        "editable": true,
+        "value": true,
+        "description": "Verify SSL certificate"
       }
     ]
   },
@@ -57,42 +53,42 @@
       "annotation": "get_pentests",
       "parameters": [
         {
-          "name": "page_num",
           "title": "Page Number",
           "type": "integer",
-          "editable": true,
-          "visible": true,
+          "name": "page_num",
           "required": false,
-          "default": 1,
-          "description": "Page number for pagination"
+          "visible": true,
+          "editable": true,
+          "description": "Page number for pagination",
+          "value": 1
         },
         {
-          "name": "page_size",
           "title": "Page Size",
           "type": "integer",
-          "editable": true,
-          "visible": true,
+          "name": "page_size",
           "required": false,
-          "default": 50,
+          "visible": true,
+          "editable": true,
+          "value": 50,
           "description": "Number of results per page"
         },
         {
-          "name": "text_search",
           "title": "Text Search",
           "type": "text",
-          "editable": true,
-          "visible": true,
+          "name": "text_search",
           "required": false,
+          "visible": true,
+          "editable": true,
           "description": "Search across all text columns",
           "tooltip": "Search across all text columns"
         },
         {
-          "name": "order_by",
           "title": "Order By Field",
           "type": "select",
-          "editable": true,
-          "visible": true,
+          "name": "order_by",
           "required": false,
+          "visible": true,
+          "editable": true,
           "options": [
             "name",
             "state",
@@ -106,13 +102,12 @@
           "tooltip": "Field to order results by"
         },
         {
-          "name": "sort_order",
           "title": "Sort Order",
           "type": "select",
-          "editable": true,
-          "visible": true,
+          "name": "sort_order",
           "required": false,
-          "default": "DESC",
+          "visible": true,
+          "editable": true,
           "options": [
             "ASC",
             "DESC"
@@ -121,13 +116,12 @@
           "tooltip": "Sort order direction"
         },
         {
-          "name": "date_field",
           "title": "Date Field",
           "type": "select",
-          "editable": true,
-          "visible": true,
+          "name": "date_field",
           "required": false,
-          "default": "launched_at",
+          "visible": true,
+          "editable": true,
           "options": [
             "launched_at",
             "completed_at",
@@ -138,32 +132,32 @@
           "tooltip": "Field to apply date filters to"
         },
         {
-          "name": "date_from",
           "title": "Date From",
           "type": "datetime",
-          "editable": true,
-          "visible": true,
+          "name": "date_from",
           "required": false,
+          "visible": true,
+          "editable": true,
           "description": "Filter results from this date",
           "tooltip": "Filter results from this date"
         },
         {
-          "name": "date_to",
           "title": "Date To",
           "type": "datetime",
-          "editable": true,
-          "visible": true,
+          "name": "date_to",
           "required": false,
+          "visible": true,
+          "editable": true,
           "description": "Filter results until this date",
           "tooltip": "Filter results until this date"
         },
         {
-          "name": "state",
           "title": "State",
           "type": "select",
-          "editable": true,
-          "visible": true,
+          "name": "state",
           "required": false,
+          "visible": true,
+          "editable": true,
           "options": [
             "scheduled",
             "provisioning",
@@ -181,34 +175,32 @@
           "tooltip": "Filter by pentest state"
         },
         {
-          "name": "client_name",
           "title": "Client Name",
           "type": "text",
-          "editable": true,
-          "visible": true,
+          "name": "client_name",
           "required": false,
+          "visible": true,
+          "editable": true,
           "description": "Filter by client name",
           "tooltip": "Filter by client name"
         },
         {
-          "name": "include_attack_paths",
           "title": "Include Attack Paths",
           "type": "checkbox",
-          "editable": true,
-          "visible": true,
+          "name": "include_attack_paths",
           "required": false,
-          "default": false,
+          "visible": true,
+          "editable": true,
           "description": "Include attack paths in the response",
           "tooltip": "Include attack paths in the response"
         },
         {
-          "name": "include_weaknesses",
           "title": "Include Weaknesses",
           "type": "checkbox",
-          "editable": true,
-          "visible": true,
+          "name": "include_weaknesses",
           "required": false,
-          "default": false,
+          "visible": true,
+          "editable": true,
           "description": "Include weaknesses in the response",
           "tooltip": "Include weaknesses in the response"
         }
@@ -233,32 +225,30 @@
       "annotation": "get_attack_paths",
       "parameters": [
         {
-          "name": "op_id",
           "title": "Operation ID",
           "type": "text",
-          "editable": true,
-          "visible": true,
+          "name": "op_id",
           "required": true,
+          "visible": true,
+          "editable": true,
           "description": "Pentest operation ID"
         },
         {
-          "name": "page_num",
           "title": "Page Number",
           "type": "integer",
-          "editable": true,
-          "visible": true,
+          "name": "page_num",
           "required": false,
-          "default": 1,
+          "visible": true,
+          "editable": true,
           "description": "Page number for pagination"
         },
         {
-          "name": "page_size",
           "title": "Page Size",
           "type": "integer",
-          "editable": true,
-          "visible": true,
+          "name": "page_size",
           "required": false,
-          "default": 50,
+          "visible": true,
+          "editable": true,
           "description": "Number of results per page"
         }
       ],
@@ -297,7 +287,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "default": 1,
+          "value": 1,
           "description": "Page number for pagination"
         },
         {
@@ -307,7 +297,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "default": 50,
+          "value": 50,
           "description": "Number of results per page"
         }
       ],
